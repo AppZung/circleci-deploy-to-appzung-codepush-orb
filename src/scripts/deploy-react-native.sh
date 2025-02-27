@@ -24,7 +24,7 @@ if [ -z "$API_KEY" ]; then
 fi
 
 # Build the base command
-DEPLOY_CMD="npx @appzung/cli@1 releases deploy-react-native --release-channel \"$RELEASE_CHANNEL\" --api-key \"$API_KEY\""
+DEPLOY_CMD="npx -y @appzung/cli@1 releases deploy-react-native --release-channel \"$RELEASE_CHANNEL\" --api-key \"$API_KEY\""
 
 if [ "$MANDATORY" == "true" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --mandatory"
