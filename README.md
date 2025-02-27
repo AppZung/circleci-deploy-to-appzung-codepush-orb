@@ -13,7 +13,7 @@ Example usage in your CircleCI config:
 ```yaml
 version: 2.1
 orbs:
-  appzung-codepush: appzung/codepush-deploy@1
+  appzung-codepush: appzung/codepush-deploy@1.0
 
 workflows:
   deploy-react-native-update:
