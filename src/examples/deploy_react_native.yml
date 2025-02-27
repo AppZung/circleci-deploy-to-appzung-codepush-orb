@@ -1,0 +1,20 @@
+description: >
+  Deploy a React Native update to AppZung CodePush.
+
+usage:
+  version: 2.1
+  orbs:
+    appzung-codepush: appzung/deploy-to-appzung-codepush@1.0.0
+  workflows:
+    deploy-react-native-update:
+      jobs:
+        - appzung-codepush/deploy_react_native:
+            api_key: ${APPZUNG_API_KEY}
+            release_channel: "Production/c95d7950-228c-4f47-8abb-4e275050ca8e"
+            mandatory: false
+            disabled: false
+            rollout: "100"
+            description_from_git: true
+            package_manager: "yarn"
+            node_version: "lts"
+            install_dependencies: true

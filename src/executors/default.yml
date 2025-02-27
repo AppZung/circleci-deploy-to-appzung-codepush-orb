@@ -1,10 +1,9 @@
 description: >
-  This is a sample executor using Docker and Node. If you want to provide a custom environment in your orb, insert your image here.
-  If you do not require an executor, you can simply delete this directory.
+  This is an executor using Docker and Node.
 docker:
-  - image: 'cimg/node:<<parameters.tag>>'
+  - image: 'cimg/node:<<parameters.node_version>>'
 parameters:
-  tag:
+  node_version:
     default: lts
     description: >
       Pick a specific cimg/node image variant:

@@ -1,0 +1,67 @@
+description: >
+  Deploy a React Native update to AppZung CodePush.
+
+parameters:
+  api_key:
+    type: string
+    description: "AppZung API key for authentication. An API key that has access to this project."
+
+  release_channel:
+    type: string
+    description: "The release channel ID to deploy to (eg. 'myReleaseChannelDescription/c95d7950-228c-4f47-8abb-4e275050ca8e')"
+
+  mandatory:
+    type: boolean
+    default: false
+    description: "Specifies whether this release should be considered mandatory"
+
+  disabled:
+    type: boolean
+    default: false
+    description: "Specifies whether this release should be disabled (not immediately available, can be enabled later)"
+
+  rollout:
+    type: string
+    default: ""
+    description: "Percentage points of users this release should be available to (eg. 95 for 95%)"
+
+  target_binary_version:
+    type: string
+    default: ""
+    description: "Semver version that specifies the binary app version this release is compatible with. If left unspecified, it will try to find the correct version."
+
+  private_key_path:
+    type: string
+    default: ""
+    description: "Specifies the location of a private key to sign the release with. This should be a path relative to your project root."
+
+  description_from_git:
+    type: boolean
+    default: false
+    description: "Use the current git commit message as the release description"
+
+  extra_flags:
+    type: string
+    default: ""
+    description: "Any additional command line flags you want to pass to the deploy command. Example: '--disable-duplicate-release-error --use-hermes'"
+
+  working_directory:
+    type: string
+    default: "."
+    description: "Directory from which to run the deploy command, useful for monorepos or projects with non-standard structure"
+
+steps:
+  - run:
+      environment:
+        PARAM_API_KEY: <<parameters.api_key>>
+        PARAM_RELEASE_CHANNEL: <<parameters.release_channel>>
+        PARAM_MANDATORY: <<parameters.mandatory>>
+        PARAM_DISABLED: <<parameters.disabled>>
+        PARAM_ROLLOUT: <<parameters.rollout>>
+        PARAM_TARGET_BINARY_VERSION: <<parameters.target_binary_version>>
+        PARAM_PRIVATE_KEY_PATH: <<parameters.private_key_path>>
+        PARAM_DESCRIPTION_FROM_GIT: <<parameters.description_from_git>>
+        PARAM_EXTRA_FLAGS: <<parameters.extra_flags>>
+      name: Deploy React Native update to AppZung CodePush
+      working_directory: <<parameters.working_directory>>
+      command: <<include(scripts/deploy-react-native.sh)>>
