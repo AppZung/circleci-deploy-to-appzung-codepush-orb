@@ -1,0 +1,100 @@
+description: >
+  Deploy a React Native update to AppZung CodePush.
+  This job installs the AppZung CLI and uses it to deploy your React Native update to AppZung CodePush.
+
+executor:
+  name: default
+  node-version: << parameters.node-version >>
+
+parameters:
+  api_key:
+    type: string
+    description: "AppZung API key for authentication. An API key that has access to this project."
+
+  release_channel:
+    type: string
+    description: "The release channel ID to deploy to (eg. 'myReleaseChannelDescription/c95d7950-228c-4f47-8abb-4e275050ca8e')"
+
+  mandatory:
+    type: enum
+    enum: ["yes", "no"]
+    default: "no"
+    description: "Specifies whether this release should be considered mandatory"
+
+  disabled:
+    type: enum
+    enum: ["yes", "no"]
+    default: "no"
+    description: "Specifies whether this release should be disabled (not immediately available, can be enabled later)"
+
+  rollout:
+    type: string
+    default: ""
+    description: "Percentage points of users this release should be available to (eg. 95 for 95%)"
+
+  target_binary_version:
+    type: string
+    default: ""
+    description: "Semver version that specifies the binary app version this release is compatible with. If left unspecified, it will try to find the correct version."
+
+  private_key_path:
+    type: string
+    default: ""
+    description: "Specifies the location of a private key to sign the release with. This should be a path relative to your project root."
+
+  description_from_git:
+    type: enum
+    enum: ["yes", "no"]
+    default: "no"
+    description: "Use the current git commit message as the release description"
+
+  extra_flags:
+    type: string
+    default: ""
+    description: "Any additional command line flags you want to pass to the deploy command. Example: '--disable-duplicate-release-error --use-hermes'"
+
+  package_manager:
+    type: enum
+    enum: ["npm", "yarn"]
+    default: "npm"
+    description: "Package manager to use for installing dependencies"
+
+  node-version:
+    type: string
+    default: "lts"
+    description: "Node.js version to use for deployment"
+
+  install_dependencies:
+    type: boolean
+    default: true
+    description: "Whether to install dependencies before deploying"
+
+steps:
+  - checkout
+  - when:
+      condition: << parameters.install_dependencies >>
+      steps:
+        - when:
+            condition:
+              equal: ["npm", << parameters.package_manager >>]
+            steps:
+              - run:
+                  name: Install dependencies with npm
+                  command: npm install
+        - when:
+            condition:
+              equal: ["yarn", << parameters.package_manager >>]
+            steps:
+              - run:
+                  name: Install dependencies with yarn
+                  command: yarn install
+  - deploy-react-native:
+      api_key: << parameters.api_key >>
+      release_channel: << parameters.release_channel >>
+      mandatory: << parameters.mandatory >>
+      disabled: << parameters.disabled >>
+      rollout: << parameters.rollout >>
+      target_binary_version: << parameters.target_binary_version >>
+      private_key_path: << parameters.private_key_path >>
+      description_from_git: << parameters.description_from_git >>
+      extra_flags: << parameters.extra_flags >>
