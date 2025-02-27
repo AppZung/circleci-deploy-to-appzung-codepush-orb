@@ -65,6 +65,11 @@ parameters:
     type: boolean
     default: true
     description: "Whether to install dependencies before deploying"
+    
+  working_directory:
+    type: string
+    default: "."
+    description: "Directory from which to run the deploy command, useful for monorepos or projects with non-standard structure"
 
 steps:
   - checkout
@@ -95,3 +100,4 @@ steps:
       private_key_path: << parameters.private_key_path >>
       description_from_git: << parameters.description_from_git >>
       extra_flags: << parameters.extra_flags >>
+      working_directory: << parameters.working_directory >>

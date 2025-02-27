@@ -45,6 +45,11 @@ parameters:
     default: ""
     description: "Any additional command line flags you want to pass to the deploy command. Example: '--disable-duplicate-release-error --use-hermes'"
 
+  working_directory:
+    type: string
+    default: "."
+    description: "Directory from which to run the deploy command, useful for monorepos or projects with non-standard structure"
+
 steps:
   - run:
       environment:
@@ -58,4 +63,5 @@ steps:
         PARAM_DESCRIPTION_FROM_GIT: <<parameters.description_from_git>>
         PARAM_EXTRA_FLAGS: <<parameters.extra_flags>>
       name: Deploy React Native update to AppZung CodePush
+      working_directory: <<parameters.working_directory>>
       command: <<include(scripts/deploy-react-native.sh)>>
