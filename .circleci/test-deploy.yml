@@ -29,11 +29,11 @@ jobs:
       - checkout
       # Create a bare React Native example before testing the orb
       - run:
-        name: Create React Native example
-        command: |
-          npx -y @react-native-community/cli@latest init TestApp
-          cd TestApp
-          echo "React Native example app created for testing"
+          name: Create React Native example
+          command: |
+            npx -y @react-native-community/cli@latest init TestApp
+            cd TestApp
+            echo "React Native example app created for testing"
       # Run your orb's commands to validate them.
       - codepush-deploy/deploy_react_native:
           api_key: ${APPZUNG_API_KEY}
