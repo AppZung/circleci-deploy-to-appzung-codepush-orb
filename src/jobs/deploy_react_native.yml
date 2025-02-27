@@ -65,7 +65,7 @@ parameters:
     type: boolean
     default: true
     description: "Whether to install dependencies before deploying"
-    
+
   working_directory:
     type: string
     default: "."
