@@ -42,15 +42,15 @@ if [ "$DISABLED" == "yes" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --disabled"
 fi
 
-if [ ! -z "$ROLLOUT" ]; then
+if [ -n "$ROLLOUT" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --rollout $ROLLOUT"
 fi
 
-if [ ! -z "$TARGET_BINARY_VERSION" ]; then
+if [ -n "$TARGET_BINARY_VERSION" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --target-binary-version \"$TARGET_BINARY_VERSION\""
 fi
 
-if [ ! -z "$PRIVATE_KEY_PATH" ]; then
+if [ -n "$PRIVATE_KEY_PATH" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --private-key-path \"$PRIVATE_KEY_PATH\""
 fi
 
@@ -58,7 +58,7 @@ if [ "$DESCRIPTION_FROM_GIT" == "yes" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --description-from-current-git-commit"
 fi
 
-if [ ! -z "$EXTRA_FLAGS" ]; then
+if [ -n "$EXTRA_FLAGS" ]; then
     DEPLOY_CMD="$DEPLOY_CMD $EXTRA_FLAGS"
 fi
 
