@@ -1,3 +1,5 @@
+description: >
+  This is an executor using Docker and Node.
 docker:
   - image: 'cimg/node:<<parameters.node_version>>'
 parameters:
