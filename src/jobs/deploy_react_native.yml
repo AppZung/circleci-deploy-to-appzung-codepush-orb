@@ -4,7 +4,7 @@ description: >
 
 executor:
   name: default
-  node-version: << parameters.node-version >>
+  node_version: << parameters.node_version >>
 
 parameters:
   api_key:
@@ -59,7 +59,7 @@ parameters:
     default: "npm"
     description: "Package manager to use for installing dependencies"
 
-  node-version:
+  node_version:
     type: string
     default: "lts"
     description: "Node.js version to use for deployment"

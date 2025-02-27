@@ -16,5 +16,5 @@ usage:
             rollout: "100"
             description_from_git: "yes"
             package_manager: "yarn"
-            node-version: "lts"
+            node_version: "lts"
             install_dependencies: true

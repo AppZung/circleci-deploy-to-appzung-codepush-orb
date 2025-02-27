@@ -26,7 +26,7 @@ workflows:
           rollout: "100" # Percentage of users to rollout to
           description_from_git: "yes" # Use current git commit as description
           package_manager: "yarn" # Package manager to use (npm or yarn)
-          node-version: "lts" # Node.js version to use
+          node_version: "lts" # Node.js version to use
           install_dependencies: true # Whether to install dependencies
 ```
 
@@ -47,7 +47,7 @@ workflows:
 - `description_from_git`: Use the current git commit message as release description ("yes" or "no", default: "no")
 - `extra_flags`: Additional command line flags to pass to the deploy command (eg. "--disable-duplicate-release-error --use-hermes")
 - `package_manager`: Package manager to use for installing dependencies ("npm" or "yarn", default: "npm")
-- `node-version`: Node.js version to use for deployment (default: "lts")
+- `node_version`: Node.js version to use for deployment (default: "lts")
 - `install_dependencies`: Whether to install dependencies before deploying (true or false, default: true)
 
 

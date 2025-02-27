@@ -1,7 +1,7 @@
 docker:
-  - image: 'cimg/node:<<parameters.node-version>>'
+  - image: 'cimg/node:<<parameters.node_version>>'
 parameters:
-  node-version:
+  node_version:
     default: lts
     description: >
       Pick a specific cimg/node image variant:
