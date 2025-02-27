@@ -18,7 +18,7 @@ orbs:
 workflows:
   deploy-react-native-update:
     jobs:
-      - appzung-codepush/deploy-react-native:
+      - appzung-codepush/deploy_react_native:
           api_key: ${APPZUNG_API_KEY}
           release_channel: "Production/c95d7950-228c-4f47-8abb-4e275050ca8e"
           mandatory: "no" # Whether the update is mandatory

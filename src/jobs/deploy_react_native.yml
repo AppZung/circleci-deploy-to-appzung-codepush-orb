@@ -88,7 +88,7 @@ steps:
               - run:
                   name: Install dependencies with yarn
                   command: yarn install
-  - deploy-react-native:
+  - deploy_react_native:
       api_key: << parameters.api_key >>
       release_channel: << parameters.release_channel >>
       mandatory: << parameters.mandatory >>

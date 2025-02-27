@@ -35,7 +35,7 @@ jobs:
           cd TestApp
           echo "React Native example app created for testing"
       # Run your orb's commands to validate them.
-      - codepush-deploy/deploy-react-native
+      - codepush-deploy/deploy_react_native
 workflows:
   test-deploy:
     jobs:
