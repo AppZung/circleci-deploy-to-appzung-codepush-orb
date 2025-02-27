@@ -34,11 +34,11 @@ fi
 # Build the base command
 DEPLOY_CMD="appzung releases deploy-react-native --release-channel \"$RELEASE_CHANNEL\" --api-key \"$API_KEY\""
 
-if [ "$MANDATORY" == "yes" ]; then
+if [ "$MANDATORY" == "true" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --mandatory"
 fi
 
-if [ "$DISABLED" == "yes" ]; then
+if [ "$DISABLED" == "true" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --disabled"
 fi
 
@@ -54,7 +54,7 @@ if [ -n "$PRIVATE_KEY_PATH" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --private-key-path \"$PRIVATE_KEY_PATH\""
 fi
 
-if [ "$DESCRIPTION_FROM_GIT" == "yes" ]; then
+if [ "$DESCRIPTION_FROM_GIT" == "true" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --description-from-current-git-commit"
 fi
 

@@ -11,15 +11,13 @@ parameters:
     description: "The release channel ID to deploy to (eg. 'myReleaseChannelDescription/c95d7950-228c-4f47-8abb-4e275050ca8e')"
 
   mandatory:
-    type: enum
-    enum: ["yes", "no"]
-    default: "no"
+    type: boolean
+    default: false
     description: "Specifies whether this release should be considered mandatory"
 
   disabled:
-    type: enum
-    enum: ["yes", "no"]
-    default: "no"
+    type: boolean
+    default: false
     description: "Specifies whether this release should be disabled (not immediately available, can be enabled later)"
 
   rollout:
@@ -38,9 +36,8 @@ parameters:
     description: "Specifies the location of a private key to sign the release with. This should be a path relative to your project root."
 
   description_from_git:
-    type: enum
-    enum: ["yes", "no"]
-    default: "no"
+    type: boolean
+    default: false
     description: "Use the current git commit message as the release description"
 
   extra_flags:
