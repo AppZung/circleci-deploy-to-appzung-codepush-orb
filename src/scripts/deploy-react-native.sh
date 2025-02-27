@@ -23,16 +23,8 @@ if [ -z "$API_KEY" ]; then
     exit 1
 fi
 
-# Install AppZung CLI if not already installed
-if which appzung > /dev/null; then
-  echo "AppZung CLI already installed."
-else
-  echo "Installing AppZung CLI..."
-  npm install -g @appzung/cli@1
-fi
-
 # Build the base command
-DEPLOY_CMD="appzung releases deploy-react-native --release-channel \"$RELEASE_CHANNEL\" --api-key \"$API_KEY\""
+DEPLOY_CMD="npx @appzung/cli@1 releases deploy-react-native --release-channel \"$RELEASE_CHANNEL\" --api-key \"$API_KEY\""
 
 if [ "$MANDATORY" == "true" ]; then
     DEPLOY_CMD="$DEPLOY_CMD --mandatory"
